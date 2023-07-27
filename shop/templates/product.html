@@ -8,7 +8,9 @@
   <div class="container py-5">
    <div class="row mt-5">
       <div class="col-10 mx-auto col-md-6 my-3">
-         <img src="{% static 'images/shorts.png' %}" alt="">
+         
+         <img src="{{ product.image.url }}" alt="">
+         
       </div>
    </div>
   </div>
@@ -16,15 +18,18 @@
   <div class="col-10 mx-auto col-md-6 my-3">
      <div>
         <h1 class="product_title">
-          Shorts 
+          {{product.name}} 
         </h1>
         <h5 class="text-info font-italic mb-4">
-            9.99
+            {{product.price}}
          </h5>
         <p class="product_desc">Product Description</p>
-        <p class="text-justify product_text"> Lorem, ipsum, dolor sit amet consectetur adipisicing elit. Aliquid molestias accusamus dolorem ratione quaerat quos sunt, perspiciatis ad nulla est nemo quidem dignissimos sequi, vitae natus neque temporibus impedit dolorum?
-        Natus, hic, quaerat. Quia, dignissimos? Tempora omnis natus ea necessitatibus fuga, optio debitis fugit, hic officiis, unde veniam repellendus, possimus sunt laudantium? Quis veritatis dicta repudiandae temporibus in porro consequatur!</p>
+        <p class="text-justify product_text"> {{product.description}} </p>
+         {% if product.stock <= 0  %}  
         <p class="text-justify product_text">Out Of Stock</p>
+         {% else %}
+         <a href=" {% url 'add_cart' product.id %}">Add To Cart</a>
+         {% endif %}
      </div>
   </div>
 {% endblock %}
